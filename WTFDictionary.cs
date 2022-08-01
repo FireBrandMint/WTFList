@@ -61,6 +61,34 @@ public class WTFDictionary<K, T>
         MasterList = new List<KeyValuePair<int, T>>(capacity);
     }
 
+    public bool TryGetValue(K key, out T value)
+    {
+        int trueKey = key.GetHashCode();
+
+        var search = Find(trueKey);
+
+        var valu = MasterList[search[0]];
+        if(valu.Key != trueKey)
+        {
+            value = default(value);
+            return false;
+        }
+
+        value = valu.Value;
+
+        return true;
+    }
+
+    public bool ContainsKey(K key)
+    {
+        int trueKey = key.GetHashCode();
+
+        var search = Find(trueKey);
+
+        var valu = MasterList[search[0]];
+        return valu.Key == trueKey;
+    }
+
     public void Add(K key, T value)
     {
         int keyTrue = key.GetHashCode();
@@ -138,7 +166,9 @@ public class WTFDictionary<K, T>
 
         var node = MasterList[index];
 
+        #if DEBUG
         if(node.Key != keyTrue) throw new Exception($"KEY VALUE '{keyTrue}' DOESN'T EXIST");
+        #endif
 
         MasterList.RemoveAt(index);
     }
