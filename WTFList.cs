@@ -112,7 +112,7 @@ public class WTFList<T>
 
         var node = MasterList[index];
 
-        if(node.key != indentifier.Key) throw new Exception($"KEY VALUE '{indentifier.Key}' DOESN'T EXIST");
+        if(node.key != indentifier.Key) throw new Exception();
 
         int ID = indentifier.ID;
 
@@ -157,10 +157,10 @@ public class WTFList<T>
             node = node.Down;
         }
 
-        throw new Exception($"ID VALUE '{ID}' DOESN'T EXIST");
+        throw new Exception();
     }
 
-    public WTFNodeSlot<T>? GetValuesOnKey(int key)
+    public WTFNodeSlot<T> GetValuesOnKey(int key)
     {
         var searchResult = Find(key);
 
@@ -264,7 +264,7 @@ public class WTFList<T>
 
 public class WTFValue<T>
 {
-    public WTFValue<T>? Down = null;
+    public WTFValue<T> Down = null;
 
     public int key;
 
@@ -298,18 +298,18 @@ public struct WTFIdentifier
 
 public class WTFNodeSlot<T>
 {
-    WTFValue<T>? Node;
+    WTFValue<T> Node;
 
     public WTFNodeSlot(WTFValue<T> node)
     {
         Node = node;
     }
 
-    public T? GetValue()
+    public T GetValue()
     {
         var currNode = Node;
         if (Node != null) Node = Node.Down;
 
-        return currNode!.Value;
+        return currNode.Value;
     }
 }
