@@ -39,8 +39,10 @@ class Program {
         
             Console.WriteLine();
         
-            Console.Write((((double)time / Stopwatch.Frequency) * 1000) - 0.031);
+            Console.Write((((double)time / Stopwatch.Frequency) * 1000));
             Console.Write("MS");
+
+            if(Console.ReadKey().Key == ConsoleKey.Enter) break;
         }
     }
 }
