@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System;
 
-class Program {
-    static void Main()
+public class Program {
+    public static void Main()
     {
         Console.WriteLine("Hello World");
         
